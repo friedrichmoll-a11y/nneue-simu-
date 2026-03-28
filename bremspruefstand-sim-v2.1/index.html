@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bremspruefstand Simulator Export v2.1</title>
+  <style>
+    :root {
+      --bg: #eef3f8;
+      --panel: rgba(255,255,255,0.88);
+      --line: #c8d6e5;
+      --text: #1f3040;
+      --muted: #5f7288;
+      --accent: #2477d6;
+      --accent-2: #e58a3a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Consolas, "Courier New", monospace;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(36,119,214,.12), transparent 28%),
+        linear-gradient(180deg, #fbfdff 0%, var(--bg) 100%);
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 20px 48px; }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--panel);
+      box-shadow: 0 18px 40px rgba(46,73,102,0.10);
+      padding: 22px;
+    }
+    h1 { margin: 0 0 10px; color: var(--accent); font-size: 34px; line-height: 1.05; }
+    p.lead { margin: 0; color: var(--muted); line-height: 1.5; max-width: 62ch; }
+    .meta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .tag { border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; font-size: 12px; color: var(--muted); background: rgba(255,255,255,0.82); }
+    .actions { display: grid; gap: 12px; }
+    a.cta {
+      display: block; text-decoration: none; text-align: center; border-radius: 14px; padding: 14px 16px;
+      color: white; background: linear-gradient(180deg, #2477d6, #1b63b8); font-weight: bold;
+    }
+    a.cta.alt { background: linear-gradient(180deg, #e58a3a, #c87422); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
+    h2 { margin: 0 0 10px; font-size: 14px; color: var(--accent); letter-spacing: .04em; }
+    ul { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.55; }
+    code { color: #234a78; }
+    @media (max-width: 900px) {
+      .hero, .grid { grid-template-columns: 1fr; }
+      h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="panel">
+        <h1>Bremspruefstand Simulator Export v2.1</h1>
+        <p class="lead">
+          Kuratierter Export des P1/P2-Systems: mathematische Bremspruefstand-Simulation, code-nahe
+          TinkerForge-/ESP32-Messkette, lokale Standalone-Ausfuehrung und vorbereitete Git-Repo-Struktur.
+        </p>
+        <div class="meta">
+          <span class="tag">P1 Mathematische Simulation</span>
+          <span class="tag">P2 TinkerForge / ESP32</span>
+          <span class="tag">lokal startbar</span>
+          <span class="tag">git-faehig</span>
+        </div>
+      </div>
+      <div class="panel actions">
+        <a class="cta" href="./bremspruefstand_analyse_standalone.html">Deutsche Hauptansicht</a>
+        <a class="cta alt" href="./simulation_analysis_en.html">English P1 Copy</a>
+        <a class="cta" href="./README.md">README lesen</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Start</h2>
+        <ul>
+          <li><code>powershell -ExecutionPolicy Bypass -File .\tools\start-local-sim.ps1</code></li>
+          <li>Startet lokalen HTTP-Server und die P2-Bridge.</li>
+          <li>Spiegelt dabei die Standalone-Datei automatisch.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h2>Inhalt</h2>
+        <ul>
+          <li><code>simulation_analyse.html</code> als Hauptoberflaeche</li>
+          <li><code>simulation_config.json</code> mit den Defaults</li>
+          <li><code>tools\p2_bridge_server.py</code> als P2-Backend</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h2>GitHub Push</h2>
+        <ul>
+          <li>Siehe <code>PUSH_TO_GITHUB.md</code>.</li>
+          <li>Repo ist lokal vorbereitet, aber ohne Remote.</li>
+          <li>Tag fuer diesen Export: <code>v2.1</code></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

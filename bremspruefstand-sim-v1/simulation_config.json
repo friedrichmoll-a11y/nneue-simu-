@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "name": "bremspruefstand-default",
+    "description": "Standardannahmen fuer den lokalen Bremspruefstand-Simulator mit RC-Elektromotor-Fokus.",
+    "version": 3,
+    "modelClass": "engineering-estimate",
+    "notes": [
+      "P1 ist die mathematische Simulation des Bremspruefstands.",
+      "P2 ist die code-nahe TinkerForge-/ESP32-Messketten-Simulation.",
+      "Messkette und Wirbelstrommodell bleiben bewusst Ingenieur-Naeherungen mit kalibrierbaren Referenzpunkten."
+    ]
+  },
+  "motor": {
+    "maxRPM": 3000,
+    "maxPowerW": 785,
+    "throttlePct": 100
+  },
+  "brake": {
+    "modelMode": "assumed",
+    "leverArmMm": 250,
+    "magnetCenterMm": 114,
+    "magnetGapMm": 1.0,
+    "disc1ThicknessMm": 2.0,
+    "disc2ThicknessMm": 2.0,
+    "refRPM": 1500,
+    "maxBrakePerMagnetNm": 8.0,
+    "mathRefTorqueNm": 10.0
+  },
+  "measurement": {
+    "loadCellRatedN": 50.0,
+    "loadCellOffsetN": 0.0,
+    "loadCellMisalignmentDeg": 0.0,
+    "loadCellNonlinearityPctFS": 0.6,
+    "leverArmToleranceMm": 1.0,
+    "irSensorRadiusMm": 120
+  },
+  "thermal": {
+    "ambientC": 25.0,
+    "irSurfaceGainCPerKw": 14.0,
+    "conductivityTempCoeffPerC": 0.0038,
+    "magnetFluxTempCoeffPerC": 0.0012
+  },
+  "numerics": {
+    "inertiaKgM2": 0.0065,
+    "frictionNm": 0.00015,
+    "bearingFrictionNm": 0.0006,
+    "historyMax": 900,
+    "logMax": 500,
+    "rawLogHz": 50
+  },
+  "materials": {
+    "aluConductivitySPerM": 35000000.0,
+    "workingFluxLimitT": 0.25,
+    "referenceRadiusMm": 100,
+    "referenceThicknessMm": 5.0,
+    "magnetCount": 2,
+    "criticalSpeedFactorBase": 1.6,
+    "criticalSpeedExponent": 2.0,
+    "magneticFieldShape": 1.6,
+    "disc2TempShare": 0.92,
+    "temperatureUncertaintyWeight": 0.35
+  },
+  "magnet": {
+    "vendor": "Mannel Magnet",
+    "product": "4410-106753",
+    "diameterMm": 40,
+    "lengthMm": 25.5,
+    "voltageV": 24.0,
+    "holdForceN": 475.0,
+    "electricWEach": 5.2,
+    "dutyCycle": "100% ED",
+    "defaultGapMm": 1.0,
+    "centerPoleDiameterMm": 20.0,
+    "outerRingOuterDiameterMm": 40.0,
+    "outerRingInnerDiameterMm": 34.0,
+    "insulationMaterial": "Harz / Isolation"
+  },
+  "uncertainty": {
+    "warnPct": 0.05,
+    "critPct": 0.12,
+    "saturationWarn": 0.65,
+    "saturationCrit": 0.9
+  },
+  "controller": {
+    "preset": "balanced",
+    "mode": "off",
+    "manualPwmPct": 0,
+    "targetRPM": 1800,
+    "targetBrakeW": 250,
+    "pidKp": 0.9,
+    "pidKi": 0.55,
+    "pidKd": 0.03,
+    "timeScale": 1.0,
+    "logEnabled": false
+  },
+  "programs": {
+    "testRun": {
+      "startRpm": 600,
+      "endRpm": 2400,
+      "stepRpm": 300,
+      "holdSec": 3.0
+    },
+    "demoProgram": [
+      { "mode": "rpm", "target": 600, "duration": 12.0 },
+      { "mode": "rpm", "target": 1200, "duration": 12.0 },
+      { "mode": "brake", "target": 220, "duration": 12.0 },
+      { "mode": "brake", "target": 420, "duration": 12.0 },
+      { "mode": "rpm", "target": 900, "duration": 12.0 }
+    ]
+  },
+  "p2Hardware": {
+    "esp32Brick": {
+      "enabled": true,
+      "name": "ESP32 Brick"
+    },
+    "esp32PowerSupply": {
+      "enabled": true,
+      "voltageV": 24.0
+    },
+    "industrialCounter": {
+      "enabled": true,
+      "impulsesPerRevolution": 20,
+      "integrationTimeMs": 500
+    },
+    "temperatureIrV2": {
+      "enabled": true,
+      "target": "Bremsscheibe 1 @ r=120 mm"
+    },
+    "loadCellV2": {
+      "enabled": true,
+      "ratedKg": 5.0,
+      "sensor": "CZL635"
+    },
+    "isolator": {
+      "enabled": true
+    },
+    "dcV2": {
+      "enabled": true,
+      "outputVoltageV": 24.0
+    },
+    "industrialAnalogOutV2": {
+      "enabled": true
+    },
+    "oled64x48": {
+      "enabled": true
+    },
+    "cables": {
+      "brickletCable100cm": 2,
+      "brickletCable15cm": 5
+    },
+    "espModes": [
+      "off",
+      "manual",
+      "rpm",
+      "torque"
+    ]
+  }
+}

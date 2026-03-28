@@ -1,0 +1,8 @@
+# Legacy root Wokwi entrypoint.
+# Primaerer Wokwi-Pfad fuer V2: .\v2\wokwi\
+
+[wokwi]
+version = 1
+firmware = "firmware.bin"
+elf = "firmware.elf"
+gdbServerPort = 3334

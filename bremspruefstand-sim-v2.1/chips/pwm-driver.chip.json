@@ -1,0 +1,15 @@
+{
+  "name": "PWM Driver",
+  "author": "OpenAI Codex",
+  "pins": ["VCC", "GND", "V24", "PWM_IN", "PWM_24V", "ACTIVE"],
+  "controls": [
+    {
+      "id": "duty_display",
+      "label": "Duty Display",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1
+    }
+  ]
+}

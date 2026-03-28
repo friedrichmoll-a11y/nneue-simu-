@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "author": "Rollenpruefstand Wirbelstrom",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": -33.7,
+      "left": 23.8,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd",
+      "top": -300,
+      "left": 500,
+      "attrs": {
+        "pins": "i2c",
+        "i2cAddress": "0x27"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_rpm",
+      "top": 200,
+      "left": 600,
+      "attrs": {
+        "value": "128"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "pot_brake",
+      "top": 315,
+      "left": 643,
+      "attrs": {
+        "value": "0"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_brake",
+      "top": 150,
+      "left": 200,
+      "attrs": {
+        "color": "red"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_rpm",
+      "top": 150,
+      "left": 250,
+      "attrs": {
+        "color": "green"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_warn",
+      "top": 169,
+      "left": 311,
+      "attrs": {
+        "color": "yellow"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_magnet",
+      "top": -250,
+      "left": 400,
+      "attrs": {
+        "color": "blue"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 130,
+      "left": 195,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 130,
+      "left": 245,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 130,
+      "left": 295,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": 130,
+      "left": 395,
+      "attrs": {
+        "value": "220"
+      }
+    }
+  ],
+  "connections": [
+    ["esp:3V3", "lcd:VCC", "red", []],
+    ["esp:GND.2", "lcd:GND", "black", []],
+    ["esp:21", "lcd:SDA", "blue", []],
+    ["esp:22", "lcd:SCL", "purple", []],
+
+    ["esp:3V3", "pot_rpm:VCC", "red", []],
+    ["esp:GND.2", "pot_rpm:GND", "black", []],
+    ["esp:VP", "pot_rpm:SIG", "green", []],
+
+    ["esp:3V3", "pot_brake:VCC", "red", []],
+    ["esp:GND.2", "pot_brake:GND", "black", []],
+    ["esp:VN", "pot_brake:SIG", "green", []],
+
+    ["esp:25", "r1:1", "yellow", []],
+    ["r1:2", "led_brake:A", "red", []],
+    ["led_brake:C", "esp:GND.2", "black", []],
+
+    ["esp:26", "r2:1", "yellow", []],
+    ["r2:2", "led_rpm:A", "green", []],
+    ["led_rpm:C", "esp:GND.2", "black", []],
+
+    ["esp:27", "r3:1", "yellow", []],
+    ["r3:2", "led_warn:A", "yellow", []],
+    ["led_warn:C", "esp:GND.2", "black", []],
+
+    ["esp:32", "r4:1", "blue", []],
+    ["r4:2", "led_magnet:A", "blue", []],
+    ["led_magnet:C", "esp:GND.2", "black", []]
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "Wirbelstrom Magnet",
+  "author": "OpenAI Codex",
+  "pins": ["VCC", "GND", "CTRL_IN", "BRAKE_OUT", "STATUS_LED"],
+  "controls": [
+    {
+      "id": "magnetStrength",
+      "label": "Magnet Strength",
+      "type": "range",
+      "min": 0,
+      "max": 20,
+      "step": 1
+    },
+    {
+      "id": "responseMs",
+      "label": "Response ms",
+      "type": "range",
+      "min": 1,
+      "max": 250,
+      "step": 1
+    }
+  ]
+}
